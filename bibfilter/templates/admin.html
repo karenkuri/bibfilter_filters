@@ -1,0 +1,127 @@
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon"  href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <!-- Bootstrap CSS -->
+    <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='css/main.css') }}" />
+    <link rel="icon"  href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <style> input[type=radio]{accent-color: #7C92A6; border-color:#7C92A6;}</style>
+</head>
+<body>
+<!-- different than main-->
+<script src="{{ url_for('static', filename='js/jquery-3.6.0.slim.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/manipulate_table.js') }}"></script>
+
+<div class="header">
+    <div class="left">
+        <form id="deleteArticlesForm">
+            <div id="zoteroSyncNotification">
+            <b>Last sync with Zotero</b><br>
+            {{ lastSync }}
+            </div>
+        </form>
+    </div>
+    <div class="center">
+        <div id="reloadDB" class="center-top">
+            <b>Sync with Zotero</b> <br> <br>
+            <a href="/resyncDB" class="linkButton button" onclick="return confirm('This will sync the database with ther Zotero servers. \n\n This process may take a while')">Sync now</a> <br>
+        </div>
+
+    </div>
+    <div class="right">
+        <div id="clearDB" class="center-top">
+            <b>Clear Database</b> <br>
+            (Empties the Database) <br>
+        <!-- You need to return the value of your method, and returning false in an onclick event prevents the default behaviour -->
+            <a href="/clearDB" class="linkButton button" onclick="return confirm('This will clear all articles from the database. \nThe database will be empty until the next successful synchronization with Zotero.\n\nAre you sure you want to proceed?')">Clear</a>
+        </div>
+    </div>
+</div>
+
+<div class="container" >
+    <div class="sidebar">
+        <div id="result-box">
+            <p><b>Number of Results: {{ numResults }} </b>
+            <a href="/bibfile{{ getStr }}" class="button linkButton" id="download"> Download as .bib</a></p>
+        </div>
+
+        <div class="stickyside">
+            <form id="filterForm" autocomplete="off">
+                <ul class="listwrapper">
+                    <li class="form-row text-only">
+                        <span><b>Search</b></span>
+                    </li>
+                    <li class="form-row text-only">
+                        <input class="fulltext" type="text" name="search" value="{{ args['search'] }}" placeholder="Topic, Keywords, DOI, Authors..." >
+                    </li>
+                    <li class="form-row top-search">
+                        <button class="bigbutton" type="submit">Search</button>
+                    </li>
+                    <div id="advanced-box">
+                    <li class="form-row text-only">
+                        <span><b>Advanced</b></span>
+                    </li>
+                    <li class="form-row">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" value="{{ args['title'] }}">
+                    </li>
+                    <li class="form-row">
+                        <label for="author">Author</label>
+                        <input type="text" name="author" value="{{ args['author'] }}"> 
+                    </li>
+                    <li class="form-row">
+                        <label for="title">From (year)</label>
+                        <input type="text" name="timestart" id="timestart" value="{{ args['timestart'] }}">
+                    </li>
+                    <li class="form-row">
+                        <label for="author">Until (year)</label>
+                        <input type="text" name="until" id="until" value="{{ args['until'] }}"> 
+                    </li>
+                    
+                    <li class="fieldsetcontainer">
+                        <fieldset class="source">
+                            <p style = font-weight:bold> Literature Type </p>
+                            <table style="width:100%" class="fieldset_table">
+                                <tr>
+                                    <td><p><label> <input type="radio" name="type" value="article" {% if args["type"] == "article" %} checked {% endif %}> Article </label></p></td>
+                                    <td><p><label> <input type="radio" name="type" value="book" {% if args["type"] == "book" %} checked {% endif %}> Book (chapter) </label></p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><label> <input type="radio" name="type" value="other" {% if args["type"] == "other" %} checked {% endif %}> Other </label></p></td>
+                                    <td><p><label> <input type="radio" name="type" value="all" {% if args["type"] == "all" %} checked {% endif %}> All </label></p></td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </li>
+                    <li class="form-row">
+                        <button type="reset" class="resetbutton bigbutton" onClick="window.location.href='admin'";">Reset</button>
+                        <button type="submit" class="bigbutton">Search</button>
+                    </li>
+                </div>
+                </ul>
+            </form>
+            <div>
+                
+            </div>
+        </div>
+
+        <div id="add-box">
+            <p><b>Suggest a new article </b><br>
+            <a href="{{ suggestLink }}" class="button linkButton" target="_blank" rel="noopener noreferrer">Suggest</a></p>
+            <p>
+                <b>Source code on </b><br>
+                <a href="https://github.com/Tomptez/Bibfilter" class="button linkButton" target="_blank" rel="noopener noreferrer"> GitHub </a>
+            </p>
+        </div>
+    </div>
+
+    <div class="main">
+        {{ table }}
+    </div>
+</div>
+
+
+</body>
+</html>

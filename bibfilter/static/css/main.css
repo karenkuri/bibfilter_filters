@@ -1,0 +1,410 @@
+/* General Layout */
+body {
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 0.8em;
+}
+
+/* Container */
+.container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1;
+    margin: 0 2%;
+}
+
+/* Main Content */
+.main {
+    flex: 4;
+    padding: 1em;
+}
+
+/* Textboxes for number of results and additional content */
+#result-box, #add-box {
+    text-align: center;
+    font-size: 0.8em;
+    padding: 0.4em;
+    position: sticky;
+}
+
+#result-box {
+    padding-left: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.4em;
+    border-bottom: 0.3em solid #7C92A6;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+#add-box {
+    margin: 2% 2%;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+
+/* Sticky behavior adjustments */
+@media (min-width: 902px) {
+    #add-box {
+        top: calc(100vh - 12em);
+    }
+    #result-box, .stickyside {
+        position: sticky;
+        top: 0;
+    }
+    .stickyside {
+        margin-top: 4.25em;
+    }
+}
+
+/* Form styling */
+.listwrapper {
+    list-style-type: none;
+    padding: 0;
+}
+
+.fieldsetcontainer {
+    padding: 0.5em;
+}
+
+fieldset {
+    border-radius: 1em;
+    border: 0.075em solid #7C92A6;
+}
+
+form fieldset p {
+    margin: 0.05em;
+}
+
+fieldset td {
+    padding: 0.15em;
+}
+
+/* Form rows and input fields */
+.form-row {
+    display: flex;
+    padding: 0.5em;
+}
+
+.text-only {
+    justify-content: flex-start;
+    padding: 0.1em 0.3em;
+}
+
+.text-only > span {
+    font-size: 1.2em;
+}
+
+.top-search {
+    padding: 0.1em 0.3em 0.3em 0.3em;
+}
+
+.form-row > label {
+    padding: 0.5em 1em 0.5em 0;
+    flex: 1;
+}
+
+.form-row > input {
+    font-size: 0.8em;
+    background-color: rgb(255, 255, 255);
+    height: 3em;
+    border: 0.05em solid #7C92A6;
+    padding: 0 0.4em;
+    border-radius: 0.4em;
+    flex: 2;
+}
+
+.form-row > input:focus {
+    background-color: rgb(255, 255, 255);
+    border: 0.05em solid #7C92A6;
+    outline: none;
+}
+
+/* Buttons */
+.bigbutton, .top-search > button, .resetbutton, .linkButton {
+    background: #7C92A6;
+    color: white;
+    font-size: 1em;
+    padding: 0.4em 1em;
+    border: 0;
+    border-radius: 0.5em;
+    margin-left: 0.5em;
+    cursor: pointer;
+}
+
+.bigbutton:hover, .top-search > button:hover, .resetbutton:hover, .linkButton:hover {
+    background: #6d8092;
+}
+
+.resetbutton {
+    background-color: #F58F89;
+    margin-left: 0;
+}
+
+.resetbutton:hover {
+    background-color: #dd817c;
+}
+
+.linkButton:hover {
+    background-color: #888a6d;
+}
+
+.linkButton {
+    background: #A3A685;
+    text-decoration: none;
+    margin-left: 0.5em;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    padding: 0.4em 1em;
+    display: inline-block;
+    font-weight: bold;
+    border-radius: 0.5em;
+}
+
+#sortrelevance {
+    text-align: right;
+}
+
+.tm-search-form {
+    margin-top: 5px; /* Adjust margin to reduce space */
+    padding: 0; /* Remove padding */
+    border: none; /* Remove border */
+    display: flex; /* Use flexbox for positioning */
+    justify-content: space-between; /* Align items with space between */
+    position: relative; /* Set position to relative */
+}
+
+.tm-search-form input[type="text"] {
+    font-size: 0.8em;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    /* Maintain original width */
+    flex: 2; /* Allow the search input to expand */
+    margin-right: 10px; /* Add right margin for spacing */
+}
+
+.tm-search-form button {
+    background-color: #7C92A6;
+    font-size: 0.9em; /* Decrease font size */
+    padding: 6px 10px; /* Decrease padding */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute; /* Set position to absolute */
+    right: 0; /* Align to the right */
+    top: 0; /* Align to the top */
+    margin-top: 8px; /* Adjust top margin for spacing */
+}
+
+/* Table */
+table {
+    border-collapse: collapse;
+    word-break: break-word;
+}
+
+/* column size */
+th {
+    word-break: keep-all;
+}
+
+@media (min-width: 451px) {
+    th a {
+        font-size: 1.1em;
+    }
+    table {
+        font-size: 1em;
+    }
+    table .colAuthor {
+        width: 0; 
+    }
+    td {
+        padding: 0.375em 0.25em; 
+    }
+
+    a.externalUrl {
+        padding: 0.125em; 
+    }
+
+    .colUrl {
+        width: 1.875em; 
+    }
+    .colYear {
+        width: 2.8125em; 
+    }
+    .colPublication {
+        width: 9.375em; 
+    }
+}
+
+/* For very small screens */
+@media (max-width: 450px) {
+    a.externalUrl {
+        padding: 0.0625em; 
+    }
+    th a {
+        font-size: 0.9em;
+    }
+    table {
+        font-size: 0.8em;
+    }
+    td {
+        padding: 0.375em 0.0625em; 
+    }
+    .colTitle {
+        width: 12.5em; 
+    }
+    .colUrl {
+        min-width: 2.5em; 
+    }
+    .colYear {
+        min-width: 1.875em; 
+    }
+}
+
+/* Additional adjustments for max-width: 901px */
+@media (max-width: 901px) {
+    .colTitle {
+        min-width: 30%;
+    }
+}
+
+@media (max-height: 640px) {
+    #add-box {
+        display: none; /* Hide the #add-box on smaller screens */
+    }
+}
+
+td {
+    vertical-align: top;
+    border-bottom: 0.05em solid #CEE1F2; 
+    margin: 0;
+}
+
+/* add stripes to table */
+#tablehead:nth-child(odd) {
+    background-color: rgb(255, 255, 255);
+}
+
+/* Hover over table rows */
+#tablehead:hover td {
+    background: #6d8092;
+}
+
+/* make table header look nice */
+th {
+    text-align: left;
+    color: rgb(255, 255, 255);
+    background-color: #7C92A6;
+    border-color: rgb(255, 255, 255);
+    position: sticky;
+    padding: 0;
+    top: 0;
+}
+
+table a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+th a {
+    display: block;
+    padding: 0.2em 0.625em; 
+}
+
+th:hover {
+    background-color: #6d8092;
+}
+
+.clickable:hover {
+    background-color: #e4f3ff;
+    cursor: pointer;
+}
+
+a.externalUrl {
+    color: rgb(255, 255, 255);
+    background-color: #A3A685;
+    border-radius: 0.4em; 
+}
+
+a.externalUrl:hover {
+    background-color: #888a6d;
+}
+
+.typeicon {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.hidden_row {
+    display: none;
+    background-color: #EEF2B6;
+}
+
+.hidden_content {
+    padding: 0.3125em 0.3125em; 
+    font-size: 1.1em;
+    margin-left: 0.9375em; 
+    margin-right: 0.9375em; 
+    text-align: justify;
+}
+
+.hidden_left {
+    background-color: #CEE1F2;
+}
+
+/* Admin Header */
+.header {
+    background-color: #CEE1F2;
+    border: 0;
+    font-size: 1.2em;
+    padding: 0.9375em 0;
+}
+
+@media (min-width: 902px) {
+    .header {
+        display: flex;
+        padding: 1.25em 3.75em; 
+    }
+
+    .center-top {
+        text-align: center;
+    }
+}
+.left,
+.right,
+.center {
+    flex: 1;
+    max-width: 15.625em; 
+    margin: 0 auto;
+}
+
+mark {
+    background-color: #EEF2B6;
+}
+
+.hiddenRowContent {
+    display: none;
+}
+
+.tableUrl {
+    white-space: nowrap;
+}
+
+#sourcecode {
+    background: #CEE1F2;
+    color: black;
+    text-decoration: none;
+    margin-left: 0.3125em; 
+    margin-bottom: 0.125em; 
+    padding: 0.4em 1em; 
+    display: inline-block;
+    font-weight: bold;
+    border-radius: 0.25em; 
+}
